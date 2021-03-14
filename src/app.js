@@ -11,6 +11,12 @@ console.log(path.join(__dirname,'../public'))
 const app = express()
 const port = process.env.PORT || 3000
 
+const weatherstack_key=process.env.weatherstack
+console.log(weatherstack_key)
+
+const geocode_key=process.env.geocode
+console.log(geocode_key)
+
 //Define path for express config
 const publicDirectory = path.join(__dirname,'../public')
 const viewsPath = path.join(__dirname, '../templates/views')
@@ -54,12 +60,12 @@ app.get('/weather',(req,res) => {
             error: "Need an address."
         })
     }
-    geocode(req.query.address, (error, {longitude, latitude, location} = {}) => {
+    geocode(req.query.address, geocode_key, (error, {longitude, latitude, location} = {}) => {
         if (error) {
           return res.send({error: error})
         } 
     
-        forecast(latitude, longitude, (error, forecastData) => {
+        forecast(latitude, longitude, weatherstack_key, (error, forecastData) => {
            if (error) {
                return res.send ({error: error})
            }
