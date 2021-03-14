@@ -11,10 +11,10 @@ console.log(path.join(__dirname,'../public'))
 const app = express()
 const port = process.env.PORT || 3000
 
-const weatherstack_key=process.env.weatherstack
+const weatherstack_key=process.env.WEATHERSTACK
 console.log(weatherstack_key)
 
-const geocode_key=process.env.geocode
+const geocode_key=process.env.GEOCODE
 console.log(geocode_key)
 
 //Define path for express config
