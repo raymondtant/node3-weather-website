@@ -60,6 +60,7 @@ app.get('/weather',(req,res) => {
             error: "Need an address."
         })
     }
+    console.log(geocode_key)
     geocode(req.query.address, geocode_key, (error, {longitude, latitude, location} = {}) => {
         if (error) {
           return res.send({error: error})
